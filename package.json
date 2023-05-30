@@ -1,0 +1,13 @@
+{
+  "name": "@lumpenspace/bing-har-parser",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "typescript": "^5.0.4"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ]
+}
