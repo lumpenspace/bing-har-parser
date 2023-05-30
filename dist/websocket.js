@@ -16,12 +16,11 @@ const parseWebSocket = (wsEntries) => {
             if (!item.type)
                 continue;
             switch (item.type) {
-                case 6:
-                    push(direction === "send" ? "ping" : "pong");
-                    break;
                 case 4:
-                    push("intro", getIntroData(item));
+                    push("UserInfo", getIntroData(item));
                     break;
+                case 2:
+                    push("Summary", item);
                 case 1:
                     push(...mapMessage(item));
                     break;
