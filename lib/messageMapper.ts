@@ -8,7 +8,11 @@ const unwrapJSON = (text:string) => {
   }
 }
 
-
+const redactSensitiveInfo = (message: any) => {
+  const { location, locationHints, ...rest } = message;
+  if (!(location || locationHints)) return message;
+  return { location: "#redacted", locationHints: "#redacted", ...rest };
+}
 
 const getMessageMapper = () => {
   let lastMessage = "";
@@ -16,8 +20,7 @@ const getMessageMapper = () => {
 
   return (item: any):[string, any] => {
     const { arguments: [{ messages, throttling, cursor }] } = item;
-    const message = messages && messages[0];
-  
+    const message = messages && redactSensitiveInfo(messages[0]);
     if (throttling) return ["throttling", throttling];
     if (cursor) return ["cursor", cursor];
     if (!message) return ["unknown", item];
@@ -38,16 +41,16 @@ const getMessageMapper = () => {
       }
     }
     switch (messageType) {
-      case "InternalSearchResult":
-        return ["result", { ...unwrapJSON(hiddenText), ...sharedFields }];
-      case "InternalSearchQuery":
-        return ["query", { text, hiddenText }];
-      case "InternalLoaderMessage":
-        return ["loader", { text }];
-      case "TextMessage":
-        return ["text", { text, ...sharedFields }];
+      case MessageType.InternalSearchResult:
+        return [messageType, { ...unwrapJSON(hiddenText), ...sharedFields }];
+      case MessageType.InternalSearchQuery:
+        return [messageType, { text, hiddenText }];
+      case MessageType.InternalLoaderMessage:
+        return [messageType, { text }];
+      case MessageType.Disengaged:
+        return [messageType, { text, ...sharedFields }];
     }
-    return ["unknown", message];
+    return [messageType, message];
   }
 
 }

@@ -1,5 +1,4 @@
 export * from './feedbackTypes';
-export * from './messageTypes';
 export * from './IntroData';
 
 export interface WebSocketEntry {
