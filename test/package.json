@@ -1,0 +1,19 @@
+{
+  "name": "@lumpenspace/bing-har-parser",
+  "version": "1.0.1",
+  "author": "lumpenspace",
+  "license": "ISC",
+  "description": "Bing HAR Parser",
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "typescript": "^5.0.4"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ]
+}
