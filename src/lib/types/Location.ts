@@ -1,5 +1,5 @@
 
-type LocationHint = {
+export type LocationHint = {
   country: string;
   state: string;
   city: string;

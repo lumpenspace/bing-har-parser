@@ -21,6 +21,7 @@ const parseWebSocket = (wsEntries: WebSocketEntry[]):ParsedWebsocketEntry[] => {
           break;
         case 2:
           push("Summary", item);
+          break;
         case 1:
           push(...mapMessage(item));
           break;

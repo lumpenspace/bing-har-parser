@@ -1,3 +1,5 @@
+import { MessageType, LocationHint, Author, InputMethod } from './';
+
 interface IntroData {
   source: string;
   optionSets: string[];

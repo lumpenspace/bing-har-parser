@@ -1,10 +1,10 @@
-enum InputMethod {
+export enum InputMethod {
   Keyboard = "Keyboard",
   Voice = "Voice",
   Unknown = "Unknown",
 }
 
-enum MessageType {
+export enum MessageType {
   ActionRequest = "ActionRequest",
   Chat = "Chat",
   Context = "Context",
@@ -20,7 +20,7 @@ enum MessageType {
   SearchQuery = "SearchQuery",
 }
 
-enum OptionSet {
+export enum OptionSet {
   nlu_direct_response_filter = "nlu_direct_response_filter",
   deepleo = "deepleo",
   disable_emoji_spoken_text = "disable_emoji_spoken_text",
@@ -38,19 +38,19 @@ enum OptionSet {
 }
 
 
-enum Author {
+export enum Author {
   Bot = "bot",
   User = "user",
   System = "system",
 }
 
-enum OffenseType {
+export enum OffenseType {
   None = "None",
   Unkown = "Unkown",
   OffenseTrigger = "OffenseTrigger"
 }
 
-enum Tone {
+export enum Tone {
   "Creative",
   "Analytical"
 }

@@ -23,6 +23,6 @@
   },
   "include": [
     "src",
-    "lib/**/*"
+    "src/lib"
   ]
 }

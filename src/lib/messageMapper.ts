@@ -1,3 +1,5 @@
+import { MessageType } from "./types";
+
 const unwrapJSON = (text:string) => {
   try {
     const json = text.replace("```json\n", "").replace("\n```", "");
