@@ -1,28 +1,17 @@
-import { read } from 'fs';
-import { Har, Entry } from 'har-format';
-import React, { createContext, useState, useEffect } from 'react';
-import { parseWebSocket } from 'lib/websocket';
-import { ParsedWebsocketEntry, WebSocketEntry } from 'lib/types';
-
-type WSEntry = Entry & {
-  _resourceType: 'websocket';
-  _webSocketMessages: any[];
-}
-
+import { createContext, useState, useEffect } from 'react';
+import { WsHar, WsEntry } from 'lib/types';
 
 const DragDropContext = createContext({
   isDragging: false,
   setIsDragging: (isDragging: boolean) => {},
 });
 
-export const DragDropContextProvider = (props: any) => {
+export const DragDropProvider = (props: any) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [logData, setLogData] = useState<Entry[]>([]);
-  const [currentEntry, setCurrentEntry] = useState<ParsedWebsocketEntry[]>();
+  const [currentEntry, setCurrentEntry] = useState<WsEntry>();
   
-  const setLogEntries = (entries: Entry[]) => {
-    setLogData(entries);
-    setCurrentEntry(parseWebSocket((entries[0] as WSEntry)._webSocketMessages));
+  const setLogEntries = (entries: WsEntry[]) => {
+    setCurrentEntry(entries[0] as WsEntry);
   }
 
 
@@ -32,7 +21,7 @@ export const DragDropContextProvider = (props: any) => {
 
     const reader = new FileReader();
     reader.onload = (e) => {
-      const data:Har = JSON.parse(e.target?.result as string);
+      const data:WsHar = JSON.parse(e.target?.result as string);
       if (data.log.entries) {
         console.log(data.log.entries)
         setLogEntries(data.log.entries.filter(
